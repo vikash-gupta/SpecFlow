@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using TechTalk.SpecFlow.Assist.ValueRetrievers;
+using TechTalk.SpecFlow.Bindings;
 
 namespace TechTalk.SpecFlow.Assist
 {
@@ -75,12 +77,27 @@ namespace TechTalk.SpecFlow.Assist
         {
             var handlers = GetTypeHandlersForFieldValuePairs<T>();
 
-            return from property in typeof (T).GetProperties()
-                   from key in handlers.Keys
-                   from row in table.Rows
-                   where key.IsAssignableFrom(property.PropertyType)
-                         && IsPropertyMatchingToColumnName(property, row.Id())
-                   select new PropertyHandler {Row = row, PropertyName = property.Name, Handler = handlers[key]};
+            var propertiesThatNeedToBeSet = (from property in typeof (T).GetProperties()
+                                            from key in handlers.Keys
+                                            from row in table.Rows
+                                            where key.IsAssignableFrom(property.PropertyType)
+                                                  && IsPropertyMatchingToColumnName(property, row.Id())
+                                            select new PropertyHandler {Row = row, PropertyName = property.Name, Handler = handlers[key]}).ToList();
+
+            propertiesThatNeedToBeSet.AddRange(from property in typeof (T).GetProperties()
+                                               from row in table.Rows
+                                               where IsPropertyMatchingToColumnName(property, row.Id())
+                                               select
+                                                   new PropertyHandler
+                                                       {
+                                                           Row = row,
+                                                           PropertyName = property.Name,
+                                                           Handler =
+                                                               tableRow =>
+                                                               ObjectContainer.StepArgumentTypeConverter.Convert(row[1], property.PropertyType, CultureInfo.InvariantCulture)
+                                                       });
+
+            return propertiesThatNeedToBeSet;
         }
 
         internal static Dictionary<Type, Func<TableRow, object>> GetTypeHandlersForFieldValuePairs<T>()
