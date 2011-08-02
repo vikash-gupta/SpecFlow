@@ -22,6 +22,7 @@ namespace TechTalk.SpecFlow.Generator.Configuration
         // generator settings
         public bool AllowDebugGeneratedFiles { get; set; }
         public bool AllowRowTests { get; set; }
+        public bool GenerateAsyncTests { get; set; }
         public string GeneratorPath { get; set; }
 
         public bool UsesPlugins { get; private set; }
@@ -35,6 +36,7 @@ namespace TechTalk.SpecFlow.Generator.Configuration
 
             AllowDebugGeneratedFiles = ConfigDefaults.AllowDebugGeneratedFiles;
             AllowRowTests = ConfigDefaults.AllowRowTests;
+            GenerateAsyncTests = ConfigDefaults.GenerateAsyncTests;
             GeneratorPath = ConfigDefaults.GeneratorPath;
 
             UsesPlugins = false;
@@ -69,6 +71,7 @@ namespace TechTalk.SpecFlow.Generator.Configuration
             {
                 AllowDebugGeneratedFiles = configSection.Generator.AllowDebugGeneratedFiles;
                 AllowRowTests = configSection.Generator.AllowRowTests;
+                GenerateAsyncTests = configSection.Generator.GenerateAsyncTests;
                 GeneratorPath = configSection.Generator.GeneratorPath;
             }
 

@@ -1,3 +1,4 @@
+using System;
 using System.Reflection;
 
 namespace TechTalk.SpecFlow
@@ -11,6 +12,7 @@ namespace TechTalk.SpecFlow
         void OnScenarioStart(ScenarioInfo scenarioInfo);
         void CollectScenarioErrors();
         void OnScenarioEnd();
+        void OnTestRunEnd();
 
         void Given(string text, string multilineTextArg, Table tableArg);
         void When(string text, string multilineTextArg, Table tableArg);
@@ -71,14 +73,6 @@ namespace TechTalk.SpecFlow
         public static void But(this ITestRunner testRunner, string text, string multilineTextArg)
         {
             testRunner.But(text, multilineTextArg, null);
-        }
-    }
-
-    public static class TestRunnerManager
-    {
-        public static ITestRunner GetTestRunner()
-        {
-            return ObjectContainer.EnsureTestRunner(Assembly.GetCallingAssembly());
         }
     }
 }
