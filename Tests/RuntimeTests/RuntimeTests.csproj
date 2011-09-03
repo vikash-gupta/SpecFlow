@@ -34,6 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Moq, Version=4.0.10827.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Moq.4.0.10827\lib\NET35\Moq.dll</HintPath>
@@ -131,6 +132,7 @@
     <Compile Include="AsyncTests\AsyncTestRunnerEventsTest.cs" />
     <Compile Include="AsyncTests\FakeAsyncTestExecutor.cs" />
     <Compile Include="BindingRegistryTest.cs" />
+    <Compile Include="Future40Ideas\DynamicTableTests.cs" />
     <Compile Include="StepsTest.cs" />
     <Compile Include="TableTests.cs" />
     <Compile Include="StepExecutionTestsWithConversionsForTables.cs" />
