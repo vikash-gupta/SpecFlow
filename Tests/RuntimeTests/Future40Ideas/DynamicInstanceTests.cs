@@ -7,7 +7,7 @@ using TechTalk.SpecFlow.Future40Ideas;
 namespace TechTalk.SpecFlow.RuntimeTests.Future40Ideas
 {
     [TestFixture]
-    public class DynamicTableTests
+    public class DynamicInstanceTests
     {
         [Test]
         public void Returns_Galt_as_last_name_with_LastName_Galt_table_row()
@@ -15,9 +15,9 @@ namespace TechTalk.SpecFlow.RuntimeTests.Future40Ideas
             var table = new Table("Field", "Value");
             table.AddRow("LastName", "Galt");
 
-            dynamic dynamicTable = new DynamicTable(table);
+            dynamic dynamicInstance = new DynamicInstance(table);
 
-            string value = dynamicTable.LastName;
+            string value = dynamicInstance.LastName;
 
             value.ShouldEqual("Galt");
         }
@@ -29,9 +29,9 @@ namespace TechTalk.SpecFlow.RuntimeTests.Future40Ideas
             table.AddRow("LastName", "Galt");
             table.AddRow("FirstName", "John");
 
-            dynamic dynamicTable = new DynamicTable(table);
+            dynamic dynamicInstance = new DynamicInstance(table);
 
-            string value = dynamicTable.FirstName;
+            string value = dynamicInstance.FirstName;
 
             value.ShouldEqual("John");
         }
@@ -42,9 +42,9 @@ namespace TechTalk.SpecFlow.RuntimeTests.Future40Ideas
             var table = new Table("x", "Value");
             table.AddRow("LastName", "Galt");
 
-            dynamic dynamicTable = new DynamicTable(table);
+            dynamic dynamicInstance = new DynamicInstance(table);
 
-            string value = dynamicTable.LastName;
+            string value = dynamicInstance.LastName;
 
             value.ShouldEqual("Galt");
         }
@@ -55,9 +55,9 @@ namespace TechTalk.SpecFlow.RuntimeTests.Future40Ideas
             var table = new Table("Field", "y");
             table.AddRow("LastName", "Galt");
 
-            dynamic dynamicTable = new DynamicTable(table);
+            dynamic dynamicInstance = new DynamicInstance(table);
 
-            string value = dynamicTable.LastName;
+            string value = dynamicInstance.LastName;
 
             value.ShouldEqual("Galt");
         }
@@ -70,12 +70,12 @@ namespace TechTalk.SpecFlow.RuntimeTests.Future40Ideas
             var table = new Table("x", "y");
             table.AddRow("LastName", "Galt");
 
-            dynamic dynamicTable = new DynamicTable(table);
+            dynamic dynamicInstance = new DynamicInstance(table);
 
             Exception exception = null;
             try
             {
-                var value = dynamicTable.IDoNotExist;
+                var value = dynamicInstance.IDoNotExist;
             } catch(Exception ex)
             {
                 exception = ex;
@@ -91,9 +91,9 @@ namespace TechTalk.SpecFlow.RuntimeTests.Future40Ideas
             table.AddRow("LastName", "Wyatt");
             table.AddRow("first name", "Ellis");
 
-            dynamic dynamicTable = new DynamicTable(table);
+            dynamic dynamicInstance = new DynamicInstance(table);
 
-            string value = dynamicTable.FirstName;
+            string value = dynamicInstance.FirstName;
 
             value.ShouldEqual("Ellis");            
         }

@@ -2,9 +2,9 @@
 {
     public static class DynamicHelpers
     {
-        public static DynamicTable ToDynamicInstance(this Table table)
+        public static DynamicInstance ToDynamicInstance(this Table table)
         {
-            return new DynamicTable(table);
+            return new DynamicInstance(table);
         }
     }
 }

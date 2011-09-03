@@ -133,7 +133,7 @@
     <Compile Include="AsyncTests\FakeAsyncTestExecutor.cs" />
     <Compile Include="BindingRegistryTest.cs" />
     <Compile Include="Future40Ideas\DynamicHelperTests.cs" />
-    <Compile Include="Future40Ideas\DynamicTableTests.cs" />
+    <Compile Include="Future40Ideas\DynamicInstanceTests.cs" />
     <Compile Include="StepsTest.cs" />
     <Compile Include="TableTests.cs" />
     <Compile Include="StepExecutionTestsWithConversionsForTables.cs" />
