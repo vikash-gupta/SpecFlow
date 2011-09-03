@@ -117,6 +117,7 @@
     <Compile Include="Bindings\StepMethodBinding.cs" />
     <Compile Include="Future40Ideas\DynamicHelpers.cs" />
     <Compile Include="Future40Ideas\DynamicInstance.cs" />
+    <Compile Include="Future40Ideas\DynamicSet.cs" />
     <Compile Include="PlatformCompatibility\CultureInfoHelper.cs" />
     <Compile Include="PlatformCompatibility\EnumHelper.cs" />
     <Compile Include="PlatformCompatibility\ExceptionHelper.cs" />
