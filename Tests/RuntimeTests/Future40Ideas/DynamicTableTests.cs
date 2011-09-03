@@ -64,6 +64,8 @@ namespace TechTalk.SpecFlow.RuntimeTests.Future40Ideas
 
         [Test]
         public void Returns_property_not_found_exception_for_property_that_does_not_exist()
+
+
         {
             var table = new Table("x", "y");
             table.AddRow("LastName", "Galt");
@@ -80,6 +82,20 @@ namespace TechTalk.SpecFlow.RuntimeTests.Future40Ideas
             }
             exception.ShouldNotBeNull();
             exception.ShouldBeType(typeof (RuntimeBinderException));
+        }
+
+        [Test]
+        public void Uses_intelligent_name_matching_for_field_names()
+        {
+            var table = new Table("Field", "Value");
+            table.AddRow("LastName", "Wyatt");
+            table.AddRow("first name", "Ellis");
+
+            dynamic dynamicTable = new DynamicTable(table);
+
+            string value = dynamicTable.FirstName;
+
+            value.ShouldEqual("Ellis");            
         }
     }
 }

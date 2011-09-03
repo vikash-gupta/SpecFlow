@@ -1,5 +1,6 @@
 ﻿using System.Dynamic;
 using System.Linq;
+using TechTalk.SpecFlow.Assist;
 
 namespace TechTalk.SpecFlow.Future40Ideas
 {
@@ -15,8 +16,8 @@ namespace TechTalk.SpecFlow.Future40Ideas
         public override bool TryGetMember(GetMemberBinder binder, out object result)
         {
             result = null;
-            if (table.Rows.Any(x => x[0] == binder.Name) == false) return false;
-            result = table.Rows.First(x => x[0] == binder.Name)[1];
+            if (table.Rows.Any(x => binder.Name.MatchesThisColumnName(x[0])) == false) return false;
+            result = table.Rows.First(x => binder.Name.MatchesThisColumnName(x[0]))[1];
             return true;
         }
     }
