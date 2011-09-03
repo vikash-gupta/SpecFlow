@@ -115,6 +115,7 @@
     <Compile Include="Bindings\StepContext.cs" />
     <Compile Include="Bindings\StepDefinitionKeyword.cs" />
     <Compile Include="Bindings\StepMethodBinding.cs" />
+    <Compile Include="Future40Ideas\DynamicHelpers.cs" />
     <Compile Include="Future40Ideas\DynamicTable.cs" />
     <Compile Include="PlatformCompatibility\CultureInfoHelper.cs" />
     <Compile Include="PlatformCompatibility\EnumHelper.cs" />
