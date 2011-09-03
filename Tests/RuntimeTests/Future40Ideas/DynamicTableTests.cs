@@ -1,7 +1,8 @@
-﻿using System.Dynamic;
-using System.Linq;
+﻿using System;
+using Microsoft.CSharp.RuntimeBinder;
 using NUnit.Framework;
 using Should;
+using TechTalk.SpecFlow.Future40Ideas;
 
 namespace TechTalk.SpecFlow.RuntimeTests.Future40Ideas
 {
@@ -60,21 +61,25 @@ namespace TechTalk.SpecFlow.RuntimeTests.Future40Ideas
 
             value.ShouldEqual("Galt");
         }
-    }
 
-    public class DynamicTable : DynamicObject
-    {
-        private readonly Table table;
-
-        public DynamicTable(Table table)
+        [Test]
+        public void Returns_property_not_found_exception_for_property_that_does_not_exist()
         {
-            this.table = table;
-        }
+            var table = new Table("x", "y");
+            table.AddRow("LastName", "Galt");
 
-        public override bool TryGetMember(GetMemberBinder binder, out object result)
-        {
-            result = table.Rows.First(x => x[0] == binder.Name)[1];
-            return true;
+            dynamic dynamicTable = new DynamicTable(table);
+
+            Exception exception = null;
+            try
+            {
+                var value = dynamicTable.IDoNotExist;
+            } catch(Exception ex)
+            {
+                exception = ex;
+            }
+            exception.ShouldNotBeNull();
+            exception.ShouldBeType(typeof (RuntimeBinderException));
         }
     }
 }
