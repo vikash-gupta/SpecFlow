@@ -6,5 +6,10 @@
         {
             return new DynamicInstance(table);
         }
+
+        public static DynamicSet ToDynamicSet(this Table table)
+        {
+            return new DynamicSet(table);
+        }
     }
 }
