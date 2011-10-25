@@ -78,3 +78,41 @@ Examples:
 	| BeforeTestRun       | 1     |
 #bug: nunit does not run the AfterTestRun event
 #	| AfterTestRun        | 1     |
+
+Scenario: Should handle exceptions in before test run (scenarios in same feature)
+	Given there is a feature file in the project as
+        """
+		Feature: Feature 1
+		
+		Scenario: Scenario 1
+		When I do something
+		
+		Scenario: Scenario 2
+		When I do something
+        """
+	And a hook 'HookForBeforeTestRun' for 'BeforeTestRun' that fails for the first time
+	And all steps are bound and pass
+	When I execute the tests
+	Then the hook 'HookForBeforeTestRun' is executed once
+
+
+Scenario: Should handle exceptions in before test run (scenarios in different features)
+	Given there is a feature file in the project as
+        """
+		Feature: Feature 1
+		
+		Scenario: Scenario 1
+		When I do something
+        """
+	Given there is a feature file in the project as
+        """
+		Feature: Feature 2
+		
+		Scenario: Scenario 2
+		When I do something
+        """
+	And a hook 'HookForBeforeTestRun' for 'BeforeTestRun' that fails for the first time
+	And all steps are bound and pass
+	When I execute the tests
+	Then the hook 'HookForBeforeTestRun' is executed once
+

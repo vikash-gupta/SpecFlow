@@ -55,6 +55,13 @@ namespace TechTalk.SpecFlow.Specs.StepDefinitions
             inputProjectDriver.AddEventBinding(eventType, code: "//pass", methodName: methodName);
         }
 
+        [Given(@"a hook '(.*)' for '(.*)' that fails for the first time")]
+        public void GivenAHookHookThatFailsForTheFirstTime(string methodName, string eventType)
+        {
+            inputProjectDriver.AddBindingCode("private static bool firstRunExplode = true;");
+            inputProjectDriver.AddEventBinding(eventType, code: "if (firstRunExplode) { firstRunExplode = false; throw new System.Exception(\"simulated failure\"); }", methodName: methodName);
+        }
+
         [Given(@"the following binding class")]
         [Given(@"the following class")]
         public void GivenTheFollowingBindingClass(string rawBindingClass)
