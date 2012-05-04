@@ -17,6 +17,8 @@
 		<Import assembly="TechTalk.SpecFlow.Generator.dll"/>
 		<Import assembly="TechTalk.SpecFlow.Parser.dll"/>
 		<Import assembly="TechTalk.SpecFlow.Utils.dll"/>
+		<Import assembly="TechTalk.SpecFlow.dll"/>
+		<Import assembly="TechTalk.SpecFlow.IdeIntegration.dll"/>
 	</Runtime>
 	
 	<Dependencies>
