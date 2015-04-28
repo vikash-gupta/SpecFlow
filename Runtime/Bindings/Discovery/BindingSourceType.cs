@@ -13,5 +13,10 @@ namespace TechTalk.SpecFlow.Bindings.Discovery
         public bool IsNested { get; set; }
 
         public BindingSourceAttribute[] Attributes { get; set; }
+
+        public override string ToString()
+        {
+            return BindingType.ToString();
+        }
     }
 }
